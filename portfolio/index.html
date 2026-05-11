@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Iago Ravi — Data Analyst & BI Developer</title>
+<meta name="description" content="Data Analyst & BI Developer | Power BI, SQL Server, DAX, Python | Public Sector Analytics | Open to Remote Roles" />
+<meta name="author" content="Iago Ravi" />
+<meta property="og:title" content="Iago Ravi — Data Analyst & BI Developer" />
+<meta property="og:description" content="Building decision-ready dashboards for governments and businesses. 10+ public dashboards live on .gov.br tracking R$ 590M+ in public spending." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://iagoravi.github.io" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f0f4f9;
+  --bg-grid: rgba(31, 78, 121, 0.04);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --accent-primary: #1f4e79;
+  --accent-secondary: #2563eb;
+  --accent-tertiary: #06b6d4;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+  --border: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --success: #10b981;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.10);
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse at center top, black 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse at center top, black 30%, transparent 80%);
+}
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  background: rgba(250, 250, 250, 0.85);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1180px; margin: 0 auto; padding: 16px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand {
+  font-family: var(--font-display); font-weight: 700; font-size: 18px;
+  letter-spacing: -0.02em; color: var(--text-primary); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-brand-mark {
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+}
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-link {
+  font-size: 14px; font-weight: 500; color: var(--text-secondary);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-link:hover { color: var(--accent-primary); }
+.lang-toggle {
+  display: flex; align-items: center;
+  background: var(--bg-tertiary); border: 1px solid var(--border);
+  border-radius: 999px; padding: 3px;
+}
+.lang-toggle button {
+  background: transparent; border: none; padding: 6px 14px;
+  border-radius: 999px; cursor: pointer; color: var(--text-tertiary);
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  transition: all 0.2s;
+}
+.lang-toggle button.active { background: var(--accent-primary); color: white; }
+
+/* HERO */
+.hero { padding: 80px 0 100px; position: relative; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; background: var(--bg-tertiary);
+  border: 1px solid var(--border); border-radius: 999px;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--accent-primary); font-weight: 500;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.6s ease 0.1s backwards;
+}
+.hero-eyebrow .dot {
+  width: 8px; height: 8px; background: var(--success); border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 76px);
+  line-height: 1.02; letter-spacing: -0.035em; font-weight: 600;
+  font-variation-settings: "opsz" 144;
+  margin-bottom: 28px;
+  animation: fadeInUp 0.8s ease 0.2s backwards;
+}
+.hero h1 em {
+  font-style: italic; font-weight: 400;
+  color: var(--accent-primary); position: relative;
+}
+.hero h1 em::after {
+  content: ''; position: absolute; bottom: 0.05em; left: 0; right: 0;
+  height: 0.08em;
+  background: linear-gradient(90deg, var(--accent-secondary), var(--accent-tertiary));
+  opacity: 0.3;
+}
+.hero-subtitle {
+  font-size: clamp(17px, 2vw, 21px);
+  color: var(--text-secondary); max-width: 680px;
+  margin-bottom: 40px; line-height: 1.55;
+  animation: fadeInUp 0.8s ease 0.35s backwards;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 24px;
+  margin-bottom: 40px; font-family: var(--font-mono);
+  font-size: 13px; color: var(--text-secondary);
+  animation: fadeInUp 0.8s ease 0.5s backwards;
+}
+.hero-meta-item { display: flex; align-items: center; gap: 8px; }
+.hero-meta-item svg { width: 14px; height: 14px; color: var(--accent-primary); }
+.hero-cta {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  animation: fadeInUp 0.8s ease 0.65s backwards;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px; border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 15px; font-weight: 500;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: all 0.25s;
+}
+.btn-primary {
+  background: var(--accent-primary); color: white; box-shadow: var(--shadow-md);
+}
+.btn-primary:hover {
+  background: var(--accent-secondary); transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), 0 0 24px var(--accent-glow);
+}
+.btn-secondary {
+  background: white; color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+.btn-secondary:hover {
+  background: var(--bg-tertiary); border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+.btn svg { width: 16px; height: 16px; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+.section { padding: 80px 0; }
+.section-header { margin-bottom: 56px; max-width: 720px; }
+.section-eyebrow {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--accent-primary); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-eyebrow::before {
+  content: ''; width: 32px; height: 1px; background: var(--accent-primary);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.1; letter-spacing: -0.025em; font-weight: 600;
+  margin-bottom: 16px;
+}
+.section-description { font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
+
+/* STACK */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.stack-card {
+  padding: 24px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+.stack-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+  opacity: 0; transition: opacity 0.25s;
+}
+.stack-card:hover {
+  border-color: var(--border-strong); transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.stack-card:hover::before { opacity: 1; }
+.stack-category {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  color: var(--accent-primary); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 12px;
+}
+.stack-items {
+  font-size: 14px; color: var(--text-primary);
+  line-height: 1.6; font-weight: 500;
+}
+
+/* PROJECTS */
+.project {
+  margin-bottom: 64px; padding: 40px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  position: relative; overflow: hidden; transition: all 0.3s;
+}
+.project:hover {
+  border-color: var(--border-strong); box-shadow: var(--shadow-lg);
+}
+.project.featured {
+  background:
+    linear-gradient(135deg, rgba(31, 78, 121, 0.02), rgba(6, 182, 212, 0.02)),
+    var(--bg-secondary);
+  border: 1px solid rgba(31, 78, 121, 0.15);
+}
+.project-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; background: var(--accent-glow);
+  color: var(--accent-secondary); border-radius: 999px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px;
+}
+.project-tag.featured {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+}
+.project-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.15; letter-spacing: -0.02em;
+  font-weight: 600; margin-bottom: 16px;
+}
+.project-description {
+  font-size: 17px; color: var(--text-secondary);
+  margin-bottom: 28px; line-height: 1.6; max-width: 720px;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px; margin-bottom: 32px; padding: 24px;
+  background: var(--bg-tertiary); border-radius: var(--radius-md);
+}
+.metric-value {
+  font-family: var(--font-display); font-size: 28px; font-weight: 700;
+  color: var(--accent-primary); line-height: 1; margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.metric-label {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-secondary); text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px; margin-bottom: 28px;
+}
+.dashboard-card {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: var(--radius-md); overflow: hidden;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; transition: all 0.25s;
+}
+.dashboard-card:hover {
+  transform: translateY(-3px); box-shadow: var(--shadow-lg);
+  border-color: var(--accent-primary);
+}
+.dashboard-image {
+  width: 100%; aspect-ratio: 16/10;
+  object-fit: cover; object-position: center top;
+  border-bottom: 1px solid var(--border); background: var(--bg-tertiary);
+}
+.dashboard-info { padding: 18px 20px; }
+.dashboard-name {
+  font-size: 15px; font-weight: 600;
+  color: var(--text-primary); margin-bottom: 4px;
+}
+.dashboard-link {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--accent-primary);
+  display: flex; align-items: center; gap: 4px;
+}
+.dashboard-link svg { width: 11px; height: 11px; }
+.tech-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+}
+.tech-tag {
+  padding: 5px 12px; background: var(--bg-tertiary);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--text-secondary); font-weight: 500;
+}
+.project-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.project-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono); font-size: 13px;
+  color: var(--text-primary); text-decoration: none;
+  font-weight: 500; transition: all 0.2s; background: var(--bg-secondary);
+}
+.project-link:hover {
+  background: var(--accent-primary); color: white;
+  border-color: var(--accent-primary); transform: translateY(-1px);
+}
+.project-link svg { width: 14px; height: 14px; }
+
+/* ABOUT */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 56px; align-items: start;
+}
+.about-text {
+  font-size: 17px; color: var(--text-secondary); line-height: 1.7;
+}
+.about-text p { margin-bottom: 18px; }
+.about-text strong { color: var(--text-primary); font-weight: 600; }
+.highlights { display: flex; flex-direction: column; gap: 12px; }
+.highlight {
+  padding: 20px 24px; background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+}
+.highlight-title {
+  font-weight: 600; font-size: 15px;
+  margin-bottom: 4px; color: var(--text-primary);
+}
+.highlight-desc {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.5;
+}
+
+/* CERTS */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.cert {
+  padding: 22px 24px; background: var(--bg-secondary);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  display: flex; align-items: flex-start; gap: 16px; transition: all 0.25s;
+}
+.cert:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px); box-shadow: var(--shadow-md);
+}
+.cert-icon {
+  width: 40px; height: 40px;
+  background: var(--bg-tertiary); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-family: var(--font-mono); font-size: 11px;
+  font-weight: 700; color: var(--accent-primary);
+}
+.cert-info { flex: 1; min-width: 0; }
+.cert-name {
+  font-size: 14px; font-weight: 600;
+  color: var(--text-primary); margin-bottom: 4px; line-height: 1.35;
+}
+.cert-issuer {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);
+}
+
+/* CONTACT */
+.contact { padding: 100px 0 80px; text-align: center; }
+.contact-grid { max-width: 760px; margin: 0 auto; }
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.1; font-weight: 600;
+  letter-spacing: -0.025em; margin-bottom: 24px;
+}
+.contact-subtitle {
+  font-size: 19px; color: var(--text-secondary); margin-bottom: 40px;
+}
+.contact-links {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+}
+
+footer {
+  padding: 32px 0; border-top: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--text-tertiary); text-align: center;
+}
+footer p { margin: 4px 0; }
+
+[data-lang]:not(.show) { display: none; }
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .nav-inner { padding: 14px 20px; }
+  .nav-links { gap: 16px; }
+  .nav-link { display: none; }
+  .hero { padding: 56px 0 72px; }
+  .section { padding: 56px 0; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .project { padding: 28px 22px; }
+  .metrics { padding: 18px; gap: 12px; }
+  .metric-value { font-size: 22px; }
+  .hero-meta { gap: 12px; font-size: 12px; }
+}
+section[id] { scroll-margin-top: 80px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <span class="nav-brand-mark">IR</span>
+      <span>Iago Ravi</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-lang="en">About</a>
+      <a href="#about" class="nav-link" data-lang="pt">Sobre</a>
+      <a href="#stack" class="nav-link">Stack</a>
+      <a href="#projects" class="nav-link" data-lang="en">Projects</a>
+      <a href="#projects" class="nav-link" data-lang="pt">Projetos</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <div class="lang-toggle">
+        <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="btn-pt" onclick="setLang('pt')">PT</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span data-lang="en" class="show">Open to remote opportunities</span>
+      <span data-lang="pt">Aberto para oportunidades remotas</span>
+    </div>
+
+    <h1 data-lang="en" class="show">
+      Building <em>decision-ready</em> dashboards for governments and businesses.
+    </h1>
+    <h1 data-lang="pt">
+      Construindo dashboards <em>prontos para decisão</em> para governos e empresas.
+    </h1>
+
+    <p class="hero-subtitle" data-lang="en">
+      I'm Iago Ravi — Data Analyst &amp; BI Developer with 4+ years turning raw data into clear, actionable insights. Currently at the IT Department of Brazil's Federal District Court of Accounts (TCDF), where I own 10 public dashboards tracking R$ 590M+ in public spending.
+    </p>
+    <p class="hero-subtitle" data-lang="pt">
+      Sou Iago Ravi — Analista de Dados e BI Developer com mais de 4 anos transformando dados brutos em insights claros e acionáveis. Atuo na STI do Tribunal de Contas do DF (TCDF), responsável por 10 painéis públicos que rastreiam mais de R$ 590M em gastos públicos.
+    </p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Brasília, BR</span>
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span data-lang="en">EU/US time zones compatible</span>
+        <span data-lang="pt">Compatível com fusos EU/US</span>
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>CSM &amp; CSD Certified</span>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">
+        <span data-lang="en">See projects</span>
+        <span data-lang="pt">Ver projetos</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#contact" class="btn btn-secondary">
+        <span data-lang="en">Get in touch</span>
+        <span data-lang="pt">Entre em contato</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" data-lang="en">About</div>
+      <div class="section-eyebrow" data-lang="pt">Sobre</div>
+      <h2 class="section-title" data-lang="en">End-to-end BI, from SQL to public-facing dashboards.</h2>
+      <h2 class="section-title" data-lang="pt">BI end-to-end, do SQL ao dashboard público.</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text" data-lang="en">
+        <p>For the past 4+ years, I've worked at the intersection of <strong>data engineering, business intelligence, and public sector compliance</strong>. My core stack is Power BI, DAX, and SQL Server, but I also work with Python (Pandas, NumPy, FastAPI) and WordPress for end-to-end portal delivery.</p>
+        <p>At <strong>TCDF</strong> — Brazil's Federal District Court of Accounts — I've shipped 20+ corporate dashboards used by 100+ auditors and own 10 public-facing dashboards live on the official .gov.br domain. I implemented Row-Level Security in production and apply LGPD (Brazilian GDPR) including PII masking.</p>
+        <p>On the side, I'm building a contract validation engine for <strong>IFRS17</strong> — the international standard for insurance contracts — for a private-sector client, using Python and FastAPI.</p>
+        <p>I'm currently pursuing a B.Sc. in Data Science and looking for remote opportunities where data drives decisions.</p>
+      </div>
+      <div class="about-text" data-lang="pt">
+        <p>Há mais de 4 anos atuo na interseção entre <strong>engenharia de dados, business intelligence e compliance no setor público</strong>. Meu stack principal é Power BI, DAX e SQL Server, mas também trabalho com Python (Pandas, NumPy, FastAPI) e WordPress para entregas end-to-end.</p>
+        <p>No <strong>TCDF</strong> — Tribunal de Contas do Distrito Federal — entreguei mais de 20 dashboards corporativos usados por 100+ auditores e mantenho 10 painéis públicos no domínio oficial .gov.br. Implementei Row-Level Security em produção e aplico LGPD com mascaramento de dados pessoais.</p>
+        <p>Em paralelo, desenvolvo um motor de validação contábil para <strong>IFRS17</strong> — norma internacional para contratos de seguros — para um cliente privado, usando Python e FastAPI.</p>
+        <p>Atualmente curso Bacharelado em Ciência de Dados e busco oportunidades remotas onde dados guiam decisões.</p>
+      </div>
+
+      <div class="highlights">
+        <div class="highlight">
+          <div class="highlight-title" data-lang="en">Public Sector Expertise</div>
+          <div class="highlight-title" data-lang="pt">Expertise em Setor Público</div>
+          <div class="highlight-desc" data-lang="en">Federal-level audit institution. LGPD, FOI, Open Data frameworks applied in production.</div>
+          <div class="highlight-desc" data-lang="pt">Atuação em Tribunal de Contas. LGPD, LAI e Dados Abertos aplicados em produção.</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-title" data-lang="en">End-to-End Delivery</div>
+          <div class="highlight-title" data-lang="pt">Entrega End-to-End</div>
+          <div class="highlight-desc" data-lang="en">From SQL Server modeling to DAX measures to embedded WordPress portals.</div>
+          <div class="highlight-desc" data-lang="pt">Da modelagem SQL Server ao DAX e portais WordPress integrados.</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-title" data-lang="en">Agile-Certified</div>
+          <div class="highlight-title" data-lang="pt">Certificado em Agile</div>
+          <div class="highlight-desc" data-lang="en">Scrum Alliance: Certified ScrumMaster (CSM) + Certified Scrum Developer (CSD).</div>
+          <div class="highlight-desc" data-lang="pt">Scrum Alliance: Certified ScrumMaster (CSM) + Certified Scrum Developer (CSD).</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-title" data-lang="en">Compliance-Aware</div>
+          <div class="highlight-title" data-lang="pt">Compliance Aplicado</div>
+          <div class="highlight-desc" data-lang="en">Production PII masking and access control (RLS) for sensitive corporate data.</div>
+          <div class="highlight-desc" data-lang="pt">Mascaramento de PII e controle de acesso (RLS) para dados sensíveis em produção.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stack">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Tech Stack</div>
+      <h2 class="section-title" data-lang="en">Tools I use to ship.</h2>
+      <h2 class="section-title" data-lang="pt">Ferramentas que uso para entregar.</h2>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-category">Business Intelligence</div>
+        <div class="stack-items">Power BI Desktop &amp; Service, DAX, Power Query (M), Row-Level Security</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-category">Databases</div>
+        <div class="stack-items">SQL Server, T-SQL, DBeaver, Dimensional Modeling</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-category">Programming</div>
+        <div class="stack-items">Python (Pandas, NumPy, FastAPI), R (basics), PHP</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-category">Web Development</div>
+        <div class="stack-items">WordPress, HTML5, CSS3, REST APIs, SharePoint</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-category" data-lang="en">Governance</div>
+        <div class="stack-category" data-lang="pt">Governança</div>
+        <div class="stack-items" data-lang="en">LGPD, FOI, Open Data, PII Masking</div>
+        <div class="stack-items" data-lang="pt">LGPD, LAI, Dados Abertos, Mascaramento de PII</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-category" data-lang="en">Methodologies</div>
+        <div class="stack-category" data-lang="pt">Metodologias</div>
+        <div class="stack-items">Scrum (CSM, CSD), Agile, Project Management</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" data-lang="en">Featured Work</div>
+      <div class="section-eyebrow" data-lang="pt">Trabalhos em Destaque</div>
+      <h2 class="section-title" data-lang="en">Projects in production.</h2>
+      <h2 class="section-title" data-lang="pt">Projetos em produção.</h2>
+      <p class="section-description" data-lang="en">A selection of work that's live, verifiable, and shipping value to real users.</p>
+      <p class="section-description" data-lang="pt">Uma seleção de trabalhos no ar, verificáveis, gerando valor real para usuários.</p>
+    </div>
+
+    <article class="project featured">
+      <div class="project-tag featured">★ <span data-lang="en">Flagship Project</span><span data-lang="pt">Projeto Principal</span></div>
+
+      <h3 class="project-title" data-lang="en">TCDF Public Transparency Dashboards</h3>
+      <h3 class="project-title" data-lang="pt">Painéis Públicos de Transparência do TCDF</h3>
+
+      <p class="project-description" data-lang="en">
+        10 public-facing Power BI dashboards live on the official .gov.br domain, providing transparency over public spending, contracts, and government accountability for citizens of Brazil's Federal District.
+      </p>
+      <p class="project-description" data-lang="pt">
+        10 painéis públicos em Power BI no domínio oficial .gov.br, fornecendo transparência sobre gastos públicos, contratos e prestação de contas para cidadãos do Distrito Federal.
+      </p>
+
+      <div class="metrics">
+        <div>
+          <div class="metric-value">R$ 590M+</div>
+          <div class="metric-label" data-lang="en">Public spending tracked</div>
+          <div class="metric-label" data-lang="pt">Gastos rastreados</div>
+        </div>
+        <div>
+          <div class="metric-value">10</div>
+          <div class="metric-label" data-lang="en">Live public dashboards</div>
+          <div class="metric-label" data-lang="pt">Painéis no ar</div>
+        </div>
+        <div>
+          <div class="metric-value">100+</div>
+          <div class="metric-label" data-lang="en">Internal users</div>
+          <div class="metric-label" data-lang="pt">Usuários internos</div>
+        </div>
+        <div>
+          <div class="metric-value">1M+</div>
+          <div class="metric-label" data-lang="en">Records processed</div>
+          <div class="metric-label" data-lang="pt">Registros processados</div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <a href="https://www2.tc.df.gov.br/powerbi/detalhamento-de-despesas/" target="_blank" rel="noopener" class="dashboard-card">
+          <img src="assets/dashboard-despesas.png" alt="Detalhamento de Despesas Dashboard" class="dashboard-image" />
+          <div class="dashboard-info">
+            <div class="dashboard-name" data-lang="en">Public Spending Detail</div>
+            <div class="dashboard-name" data-lang="pt">Detalhamento de Despesas</div>
+            <div class="dashboard-link">
+              gov.br
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </div>
+          </div>
+        </a>
+        <a href="https://ouvidoria.tc.df.gov.br/painel-ouvidoria/" target="_blank" rel="noopener" class="dashboard-card">
+          <img src="assets/dashboard-ouvidoria.png" alt="Painel Ouvidoria Dashboard" class="dashboard-image" />
+          <div class="dashboard-info">
+            <div class="dashboard-name" data-lang="en">Citizen Ombudsman Panel</div>
+            <div class="dashboard-name" data-lang="pt">Painel da Ouvidoria</div>
+            <div class="dashboard-link">
+              gov.br
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </div>
+          </div>
+        </a>
+        <a href="https://www2.tc.df.gov.br/2-controle-social/licitacoes-e-contratos/" target="_blank" rel="noopener" class="dashboard-card">
+          <img src="assets/dashboard-contratos.png" alt="Contratos Dashboard" class="dashboard-image" />
+          <div class="dashboard-info">
+            <div class="dashboard-name" data-lang="en">Contracts &amp; Procurement</div>
+            <div class="dashboard-name" data-lang="pt">Licitações e Contratos</div>
+            <div class="dashboard-link">
+              gov.br
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="tech-tags">
+        <span class="tech-tag">Power BI</span>
+        <span class="tech-tag">DAX</span>
+        <span class="tech-tag">Power Query (M)</span>
+        <span class="tech-tag">SQL Server</span>
+        <span class="tech-tag">RLS</span>
+        <span class="tech-tag">WordPress</span>
+        <span class="tech-tag">LGPD</span>
+      </div>
+
+      <div class="project-links">
+        <a href="https://www2.tc.df.gov.br/" target="_blank" rel="noopener" class="project-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span data-lang="en">Visit TCDF Portal</span>
+          <span data-lang="pt">Visitar Portal TCDF</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-tag">
+        <span data-lang="en">Independent Project</span>
+        <span data-lang="pt">Projeto Independente</span>
+      </div>
+
+      <h3 class="project-title">IFRS17 Contract Validation Engine</h3>
+
+      <p class="project-description" data-lang="en">
+        Backend system that validates insurance contracts against IFRS17 — the international accounting standard for insurance contracts. Built for a private-sector client, the engine translates regulatory rules into automated checks, working alongside accounting subject-matter experts.
+      </p>
+      <p class="project-description" data-lang="pt">
+        Sistema backend que valida contratos de seguros conforme a IFRS17 — norma internacional de contabilidade para contratos de seguros. Desenvolvido para cliente do setor privado, o motor traduz regras regulatórias em checagens automatizadas, em colaboração com especialistas contábeis.
+      </p>
+
+      <div class="metrics">
+        <div>
+          <div class="metric-value">1,000+</div>
+          <div class="metric-label" data-lang="en">Commits delivered</div>
+          <div class="metric-label" data-lang="pt">Commits entregues</div>
+        </div>
+        <div>
+          <div class="metric-value">REST</div>
+          <div class="metric-label" data-lang="en">API architecture</div>
+          <div class="metric-label" data-lang="pt">Arquitetura API</div>
+        </div>
+        <div>
+          <div class="metric-value">NDA</div>
+          <div class="metric-label" data-lang="en">Client confidentiality</div>
+          <div class="metric-label" data-lang="pt">Confidencialidade</div>
+        </div>
+      </div>
+
+      <div class="tech-tags">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">Uvicorn</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">Git</span>
+        <span class="tech-tag">IFRS17</span>
+      </div>
+
+      <div class="project-links">
+        <a href="https://github.com/IagoRavi" target="_blank" rel="noopener" class="project-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <span data-lang="en">View sanitized repository</span>
+          <span data-lang="pt">Ver repositório sanitizado</span>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="certs">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow" data-lang="en">Credentials</div>
+      <div class="section-eyebrow" data-lang="pt">Credenciais</div>
+      <h2 class="section-title" data-lang="en">Certifications &amp; training.</h2>
+      <h2 class="section-title" data-lang="pt">Certificações &amp; treinamentos.</h2>
+    </div>
+
+    <div class="certs-grid">
+      <div class="cert">
+        <div class="cert-icon">CSM</div>
+        <div class="cert-info">
+          <div class="cert-name">Certified ScrumMaster</div>
+          <div class="cert-issuer">Scrum Alliance · 2025</div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">CSD</div>
+        <div class="cert-info">
+          <div class="cert-name">Certified Scrum Developer</div>
+          <div class="cert-issuer">Scrum Alliance · 2025</div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">RLS</div>
+        <div class="cert-info">
+          <div class="cert-name" data-lang="en">Power BI: Applying Row-Level Security</div>
+          <div class="cert-name" data-lang="pt">Power BI: aplicando Row-Level Security</div>
+          <div class="cert-issuer">Alura · 2024</div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">DAX</div>
+        <div class="cert-info">
+          <div class="cert-name" data-lang="en">Power BI: Applied DAX</div>
+          <div class="cert-name" data-lang="pt">Power BI: aplicando DAX ao negócio</div>
+          <div class="cert-issuer">Alura · 2023</div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">M</div>
+        <div class="cert-info">
+          <div class="cert-name" data-lang="en">Power BI: M Language Deep Dive</div>
+          <div class="cert-name" data-lang="pt">Power BI: mergulhando na linguagem M</div>
+          <div class="cert-issuer">Alura · 2023</div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">⊞</div>
+        <div class="cert-info">
+          <div class="cert-name" data-lang="en">Power BI: Data Modeling</div>
+          <div class="cert-name" data-lang="pt">Power BI: modelagem de dados</div>
+          <div class="cert-issuer">Alura · 2023</div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">PY</div>
+        <div class="cert-info">
+          <div class="cert-name" data-lang="en">Python for Data: Pandas, NumPy</div>
+          <div class="cert-name" data-lang="pt">Python para Dados: Pandas, NumPy</div>
+          <div class="cert-issuer">Alura · 2026</div>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">LGPD</div>
+        <div class="cert-info">
+          <div class="cert-name" data-lang="en">Brazilian Data Protection Law (LGPD)</div>
+          <div class="cert-name" data-lang="pt">Fundamentos da LGPD</div>
+          <div class="cert-issuer">ENAP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="section-eyebrow" style="justify-content: center; display: inline-flex;">
+        <span data-lang="en">Get in touch</span>
+        <span data-lang="pt">Entre em contato</span>
+      </div>
+      <h2 class="contact-title" data-lang="en">Let's build something with data.</h2>
+      <h2 class="contact-title" data-lang="pt">Vamos construir algo com dados.</h2>
+      <p class="contact-subtitle" data-lang="en">
+        Open to remote opportunities — full-time or contract — in Data Analytics, BI Development, and GovTech.
+      </p>
+      <p class="contact-subtitle" data-lang="pt">
+        Aberto a oportunidades remotas — CLT internacional, PJ ou freela — em Data Analytics, BI e GovTech.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:iago.ravi@outlook.com" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          iago.ravi@outlook.com
+        </a>
+        <a href="https://www.linkedin.com/in/iago-ravi" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/IagoRavi" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© <span id="current-year"></span> Iago Ravi · Brasília, Brazil</p>
+    <p>
+      <span data-lang="en">Built with HTML, CSS &amp; care. No frameworks, no trackers.</span>
+      <span data-lang="pt">Feito com HTML, CSS e cuidado. Sem frameworks, sem rastreadores.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    if (el.dataset.lang === lang) el.classList.add('show');
+    else el.classList.remove('show');
+  });
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  try { localStorage.setItem('lang', lang); } catch(e) {}
+}
+(function initLang() {
+  let lang = 'en';
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'pt' || saved === 'en') lang = saved;
+    else if (navigator.language && navigator.language.startsWith('pt')) lang = 'pt';
+  } catch(e) {}
+  setLang(lang);
+})();
+document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
